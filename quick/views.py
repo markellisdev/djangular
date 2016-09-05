@@ -6,9 +6,6 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 import json
 
 def index(request):
-    """
-    This class is for our Index.
-    """
     template_name = 'index.html'
     return render(request, template_name, {})
 
