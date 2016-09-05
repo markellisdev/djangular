@@ -1,0 +1,4 @@
+bower_components
+node_modules
+__pycache__
+db.sqlite3
