@@ -1,7 +1,7 @@
 app.controller('MainController', function($scope, $http, $location) {
 
   $scope.user = {
-    username: "stevebrownlee",
+    username: "guest1",
     password: "12345",
     email: "steve@steve.com",
     first_name: "Steve",

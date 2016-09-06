@@ -33,22 +33,7 @@ def register_user(request):
     # Commit the user to the database by saving it
     new_user.save()
 
-    # Use the built-in authenticate method to verify
-    authenticated_user = authenticate(
-            username=req_body['username'],
-            password=req_body['password']
-            )
-
-    # If authentication was successful, log the user in
-    if authenticated_user is not None:
-        login(request, authenticated_user)
-
-        data = json.dumps({"success":True})
-        return HttpResponse(data, content_type='application/json')
-
-    else:
-        data = json.dumps({"success":False})
-        return HttpResponse(data, content_type='application/json')
+    return login_user(request)
 
 
 def login_user(request):
@@ -67,17 +52,14 @@ def login_user(request):
             password=req_body['password']
             )
 
-    print("authenticated_user", authenticated_user)
-
     # If authentication was successful, log the user in
+    success = True
     if authenticated_user is not None:
         login(request=request, user=authenticated_user)
-
-        data = json.dumps({"success":True})
-        return HttpResponse(data, content_type='application/json')
-
     else:
-        data = json.dumps({"success":False})
-        return HttpResponse(data, content_type='application/json')
+        success = False
+
+    data = json.dumps({"success":success})
+    return HttpResponse(data, content_type='application/json')
 
 
