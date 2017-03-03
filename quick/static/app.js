@@ -10,7 +10,7 @@ angular.module('YourApp').config(
     '$routeProvider',
     function($interpolateProvider, $httpProvider, $routeProvider) {
 
-      $interpolateProvider.startSymbol('((');
+      $interpolateProvider.startSymbol('(('); //These two lines change {{}} to (())
       $interpolateProvider.endSymbol('))');
 
       $httpProvider.defaults.xsrfCookieName = 'csrftoken';
