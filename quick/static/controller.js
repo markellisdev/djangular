@@ -15,7 +15,7 @@ app.controller('MainController', function($scope, $http, $location) {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded"
         },
-        data: {
+        data: { //This is body- called by req_body in
           "username": $scope.user.username,
           "password": $scope.user.password,
           "email": $scope.user.email,
