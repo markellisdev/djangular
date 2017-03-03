@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout, login, authenticate
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.core import serializers
 from quick.models import Product
 import json
 
@@ -12,8 +13,8 @@ def index(request):
 
 def list_products(request):
     all_products = Product.objects.all()
-    template_name = 'product/index.html'
-    return render(request, template_name, {'products':all_products})
+    data = serializers.serialize('json', all_products)
+    return HttpResponse(data, content_type='application/json')
 
 def add_product(request):
     form_data = request.POST
