@@ -3,10 +3,29 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout, login, authenticate
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, Http404
+from quick.models import Product
 import json
 
 def index(request):
     template_name = 'index.html'
+    return render(request, template_name, {})
+
+def list_products(request):
+    all_products = Product.objects.all()
+    template_name = 'product/index.html'
+    return render(request, template_name, {'products':all_products})
+
+def add_product(request):
+    form_data = request.POST
+
+    p = Product(
+        title = form_data['title'],
+        description = form_data['description'],
+        price = form_data['price'],
+        quantity = form_data['quantity'],
+    )
+    p.save()
+    template_name = 'product/success.html'
     return render(request, template_name, {})
 
 

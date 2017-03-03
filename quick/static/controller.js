@@ -1,7 +1,7 @@
 app.controller('MainController', function($scope, $http, $location) {
 
   $scope.user = {
-    username: "guest1",
+    username: "guest12",
     password: "12345",
     email: "steve@steve.com",
     first_name: "Steve",
@@ -22,14 +22,12 @@ app.controller('MainController', function($scope, $http, $location) {
           "first_name": $scope.user.first_name,
           "last_name": $scope.user.last_name
         }
-      }).success(res => {
-        if (res.success === true) {
+      }).then(res => {
+        if (res.data.success === true) {
             $location.path('/hello');
         } else {
             // Show dialog element telling user that registration failed
         }
-      }).error(() => {
-        // Show dialog element telling user that registration failed
       });
   };
 
@@ -45,14 +43,13 @@ app.controller('MainController', function($scope, $http, $location) {
           "username": $scope.user.username,
           "password": $scope.user.password
         }
-      }).success(res => {
-        if (res.success === true) {
+      }).then(res => {
+        if (res.data.success === true) {
+            console.log(res)
             $location.path('/hello');
         } else {
             // Show dialog element telling user that registration failed
         }
-      }).error(() => {
-        // Show dialog element telling user that registration failed
       });
   };
 

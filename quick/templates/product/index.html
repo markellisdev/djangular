@@ -1,0 +1,16 @@
+<h1>Products</h1>
+
+<ol>
+{% for product in products %}
+    <li>{{ product.title }}</li>
+{% endfor %}
+</ol>
+
+<form action="{% url 'quick:add_product' %}" method="post">
+  {% csrf_token %}
+  <input type="text" name="title" placeholder="Product title">
+  <input type="text" name="description" placeholder="Product description">
+  <input type="text" name="price" placeholder="Product price">
+  <input type="text" name="quantity" placeholder="Product quantity">
+  <input type="submit" value="Sell It" />
+</form>
